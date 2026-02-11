@@ -227,7 +227,7 @@ If no process is running and the lock still appears, delete `.next/dev/lock` and
 
 ## License
 
-MIT
+This project is licensed under the **SkyPulse Attribution License** — you are free to use, modify, and distribute the code, but you **must credit the original author ([pattas](https://github.com/pattas))** and **link to the original repository**. See [LICENSE](LICENSE) for details.
 
 ## Credits
 
