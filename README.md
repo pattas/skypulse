@@ -61,14 +61,14 @@ Real-time flight tracker with smooth aircraft animation, powered by OpenSky Netw
 │                  Next.js API Routes                           │
 │                                                              │
 │  /api/flights ──→ OpenSky Network (all visible aircraft)    │
-│  /api/flight  ──→ OpenSky Network (single aircraft, 1s)    │
+│  /api/flight  ──→ OpenSky Network (single aircraft, adaptive polling) │
 │  /api/route   ──→ AdsbDB (departure/destination lookup)     │
 │                                                              │
 │  Features: OAuth2 tokens · Response caching · Rate limiting │
 └──────────────────────────────────────────────────────────────┘
 ```
 
-**Data flow:** The map viewport bounds are sent to `/api/flights` every 5 seconds. The API proxy fetches from OpenSky Network (with OAuth2 if configured), caches responses, and returns normalized flight data. The `useInterpolation` hook then animates aircraft positions at 30fps using dead-reckoning between updates. When a user selects an aircraft, `/api/flight` polls that specific aircraft every second, and `/api/route` fetches the flight route from AdsbDB.
+**Data flow:** The map viewport bounds are sent to `/api/flights` every 5 seconds. The API proxy fetches from OpenSky Network (with OAuth2 if configured), caches responses, and returns normalized flight data. The `useInterpolation` hook then animates aircraft positions at 30fps using dead-reckoning between updates. When a user selects an aircraft, `/api/flight` uses adaptive polling with retry backoff (for rate-limit resilience), and `/api/route` fetches the flight route from AdsbDB.
 
 ## Getting Started
 
@@ -203,23 +203,31 @@ When configured, the API proxy uses OAuth2 client credentials flow to authentica
 
 ## Code Review Summary
 
-The codebase underwent three comprehensive code reviews covering API routes, React components, and hooks/utilities:
+The codebase underwent three comprehensive code reviews covering API routes, React components, and hooks/utilities. The major findings have already been addressed in the current version.
 
-**Strengths:**
-- Clean project architecture with good separation of concerns
-- Strong TypeScript usage with well-defined interfaces
-- Modular hook design (data fetching, interpolation, filtering, routing)
-- Effective caching strategy and rate limit handling in API routes
-- Smooth animation system using requestAnimationFrame
+**Current status:**
+- API hardening implemented (runtime validation for external payloads, safer error responses)
+- OAuth token handling deduplicated into shared `opensky-auth` module
+- Map listener lifecycle cleanup completed to prevent leaks
+- Accessibility fixes applied (labels, ARIA names, keyboard/focus behavior)
+- Error boundary added for App Router and UI resilience
+- ESLint v9 flat config added, with lint/typecheck/build all passing
 
-**Areas for Improvement:**
-- **Performance** — Several components would benefit from `React.memo` and `useMemo` to reduce unnecessary re-renders
-- **Memory management** — Some MapLibre event listeners need cleanup on unmount
-- **Accessibility** — Missing ARIA labels and keyboard navigation in several components
-- **API hardening** — Runtime validation of external API responses, structured error logging
-- **Code duplication** — OAuth token fetching and state transformation logic is repeated across API routes
+The original detailed action plan and review notes remain useful historical context for future improvements.
 
-A detailed action plan with 72 identified issues and fixes is available in the code review documents.
+## Troubleshooting
+
+### `Unable to acquire lock at .next/dev/lock`
+
+This means another `next dev` process is still running.
+
+```bash
+pgrep -af "/node_modules/.bin/next dev"
+kill <PID>
+npm run dev
+```
+
+If no process is running and the lock still appears, delete `.next/dev/lock` and start again.
 
 ## Known Issues & Roadmap
 
