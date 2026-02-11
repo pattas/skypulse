@@ -33,7 +33,7 @@ Real-time flight tracker with smooth aircraft animation, powered by OpenSky Netw
 | Technology | Version | Purpose |
 |-----------|---------|---------|
 | [Next.js](https://nextjs.org/) | 16 | React framework with App Router |
-| [React](https://react.dev/) | 19 | UI with React Compiler |
+| [React](https://react.dev/) | 19 | UI library |
 | [MapLibre GL](https://maplibre.org/) | 5.18 | GPU-accelerated vector map rendering |
 | [Tailwind CSS](https://tailwindcss.com/) | 4 | Utility-first styling |
 | [Lucide React](https://lucide.dev/) | 0.563 | Icon library |
@@ -153,7 +153,7 @@ src/
 │   ├── useFlightHistory.ts     # Position trail history
 │   ├── useFlightFilters.ts     # Filter state management
 │   ├── useMapBounds.ts         # Viewport bounds tracking
-│   ├── useSelectedFlightTracking.ts  # 1s polling for selected aircraft
+│   ├── useSelectedFlightTracking.ts  # 4s polling for selected aircraft
 │   └── useUrlState.ts          # URL state persistence
 ├── lib/
 │   ├── types.ts                # TypeScript interfaces
@@ -169,6 +169,7 @@ src/
 │   ├── opensky-auth.ts         # OAuth2 token management
 │   ├── opensky-state.ts        # OpenSky API state parsing
 │   ├── adsbdb.ts               # AdsbDB route API client
+│   ├── runtime.ts              # Runtime type guards for API payloads
 │   ├── units.ts                # Unit conversion utilities
 │   └── z-index.ts              # Z-index constants
 └── data/
@@ -195,25 +196,11 @@ Between 5-second API updates, aircraft positions are interpolated at 30fps using
 
 ### Server-Side Caching
 
-API routes implement in-memory response caching to minimize calls to OpenSky Network. The bulk endpoint caches by bounding box with a 4-second TTL, and the single-aircraft endpoint caches per ICAO24 address with a 1-second TTL.
+API routes implement in-memory response caching to minimize calls to OpenSky Network. The bulk endpoint caches by quantized bounding box with a 5-second TTL, and the single-aircraft endpoint caches per ICAO24 address with a 1.5-second TTL.
 
 ### OAuth2 Authentication
 
 When configured, the API proxy uses OAuth2 client credentials flow to authenticate with OpenSky Network, providing significantly higher rate limits (anonymous: ~100 requests/day, authenticated: ~4000 requests/day).
-
-## Code Review Summary
-
-The codebase underwent three comprehensive code reviews covering API routes, React components, and hooks/utilities. The major findings have already been addressed in the current version.
-
-**Current status:**
-- API hardening implemented (runtime validation for external payloads, safer error responses)
-- OAuth token handling deduplicated into shared `opensky-auth` module
-- Map listener lifecycle cleanup completed to prevent leaks
-- Accessibility fixes applied (labels, ARIA names, keyboard/focus behavior)
-- Error boundary added for App Router and UI resilience
-- ESLint v9 flat config added, with lint/typecheck/build all passing
-
-The original detailed action plan and review notes remain useful historical context for future improvements.
 
 ## Troubleshooting
 
