@@ -22,28 +22,46 @@ import { useFlightHistory } from '@/hooks/useFlightHistory';
 import { useFlightRoute } from '@/hooks/useFlightRoute';
 import { useSelectedFlightTracking } from '@/hooks/useSelectedFlightTracking';
 import type { Flight } from '@/lib/types';
+import { MAP_LIGHT_STYLE } from '@/lib/constants';
+import { Z_INDEX } from '@/lib/z-index';
 
 export default function Home() {
   const mapRef = useRef<Map | null>(null);
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
   const { bounds, attachBoundsListener } = useMapBounds();
-  const flightData = useFlightData(bounds);
+  const {
+    current: currentFlights,
+    previous: previousFlights,
+    lastUpdate,
+    error,
+    isLoading,
+  } = useFlightData(bounds);
   const { filters, setFilters, isOpen: filterOpen, setIsOpen: setFilterOpen, isActive: filterActive, applyFilters, reset: resetFilters } = useFlightFilters();
-  const { restoreFromUrl, syncToUrl, initialIcao } = useUrlState(mapRef);
+  const { restoreFromUrl, syncToUrl, attachMoveListener, initialIcao } = useUrlState();
   const flightHistory = useFlightHistory();
 
-  const filteredFlights = useMemo(() => applyFilters(flightData.current), [applyFilters, flightData.current]);
+  const filteredFlights = useMemo(() => applyFilters(currentFlights), [applyFilters, currentFlights]);
 
   // Update flight history on each data refresh
   useEffect(() => {
-    if (flightData.current.length > 0) {
-      flightHistory.update(flightData.current);
+    if (currentFlights.length > 0) {
+      flightHistory.update(currentFlights);
     }
-  }, [flightData.current, flightHistory]);
+  }, [currentFlights, flightHistory]);
 
   const handleMapReady = useCallback((map: Map) => {
     mapRef.current = map;
+
+    const savedTheme = window.localStorage.getItem('skypulse-theme');
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      map.setStyle(MAP_LIGHT_STYLE);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
     attachBoundsListener(map);
+    attachMoveListener(map);
 
     // Load airports
     import('@/data/airports.json').then(mod => {
@@ -52,7 +70,7 @@ export default function Home() {
     }).catch(() => {});
 
     restoreFromUrl(map);
-  }, [attachBoundsListener, restoreFromUrl]);
+  }, [attachBoundsListener, attachMoveListener, restoreFromUrl]);
 
   const handleSelectFlight = useCallback((flight: Flight | null) => {
     setSelectedFlight(flight);
@@ -82,8 +100,8 @@ export default function Home() {
   // Poll selected aircraft only when it is not present in the current bulk snapshot
   const selectedNeedsDedicatedTracking = useMemo(() => {
     if (!selectedFlight) return false;
-    return !flightData.current.some(f => f.icao24 === selectedFlight.icao24);
-  }, [selectedFlight, flightData.current]);
+    return !currentFlights.some(f => f.icao24 === selectedFlight.icao24);
+  }, [selectedFlight, currentFlights]);
 
   const { trackedFlight } = useSelectedFlightTracking(
     selectedNeedsDedicatedTracking ? selectedFlight?.icao24 ?? null : null,
@@ -91,7 +109,7 @@ export default function Home() {
 
   // Keep selected flight data fresh — prefer fast-tracked data, fall back to bulk data
   const freshSelected = selectedFlight
-    ? trackedFlight ?? flightData.current.find(f => f.icao24 === selectedFlight.icao24) ?? selectedFlight
+    ? trackedFlight ?? currentFlights.find(f => f.icao24 === selectedFlight.icao24) ?? selectedFlight
     : null;
 
   // Merge fast-polled data into the flight array for interpolation
@@ -132,8 +150,8 @@ export default function Home() {
 
   useInterpolation({
     current: interpolationFlights,
-    previous: flightData.previous,
-    lastUpdate: flightData.lastUpdate,
+    previous: previousFlights,
+    lastUpdate,
     mapRef,
     selectedIcao: freshSelected?.icao24 ?? null,
     trailRef,
@@ -151,14 +169,14 @@ export default function Home() {
   const initialRestoreDone = useRef(false);
   useEffect(() => {
     if (initialRestoreDone.current) return;
-    if (initialIcao && !selectedFlight && flightData.current.length > 0) {
-      const found = flightData.current.find(f => f.icao24 === initialIcao);
+    if (initialIcao && !selectedFlight && currentFlights.length > 0) {
+      const found = currentFlights.find(f => f.icao24 === initialIcao);
       if (found) {
         setSelectedFlight(found);
         initialRestoreDone.current = true;
       }
     }
-  }, [initialIcao, selectedFlight, flightData.current]);
+  }, [initialIcao, selectedFlight, currentFlights]);
 
   const handleGeolocate = useCallback((lng: number, lat: number) => {
     mapRef.current?.flyTo({ center: [lng, lat], zoom: 9, duration: 1200 });
@@ -177,7 +195,8 @@ export default function Home() {
   }, [filterOpen, setFilterOpen]);
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-bg-primary">
+    <main className="relative h-screen w-screen overflow-hidden bg-bg-primary" aria-label="SkyPulse flight tracker">
+      <h1 className="sr-only">SkyPulse real-time flight tracker</h1>
       <FlightMap
         onMapReady={handleMapReady}
         onSelectFlight={handleSelectFlight}
@@ -189,13 +208,13 @@ export default function Home() {
 
       <StatsBar
         flights={filteredFlights}
-        lastUpdate={flightData.lastUpdate}
-        error={flightData.error}
-        isLoading={flightData.isLoading}
+        lastUpdate={lastUpdate}
+        error={error}
+        isLoading={isLoading}
       />
 
       <SearchBar
-        flights={flightData.current}
+        flights={currentFlights}
         onSelect={handleSearchSelect}
       />
 
@@ -224,8 +243,8 @@ export default function Home() {
       />
 
       {/* Loading overlay */}
-      {flightData.isLoading && flightData.current.length === 0 && (
-        <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+      {isLoading && currentFlights.length === 0 && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: Z_INDEX.overlay }}>
           <div className="flex items-center gap-3 bg-bg-secondary/80 px-5 py-3 backdrop-blur-sm border border-border-subtle">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
             <span className="text-sm text-text-secondary font-mono tracking-wide">

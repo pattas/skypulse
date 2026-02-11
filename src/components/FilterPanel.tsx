@@ -1,8 +1,11 @@
 'use client';
 
+import { memo } from 'react';
 import { SlidersHorizontal, X, RotateCcw } from 'lucide-react';
 import type { FilterState } from '@/hooks/useFlightFilters';
 import { getAircraftCategory } from '@/lib/aircraft-category';
+import { metersPerSecondToKnots, metersToFeet } from '@/lib/units';
+import { Z_INDEX } from '@/lib/z-index';
 
 interface FilterPanelProps {
   isOpen: boolean;
@@ -15,7 +18,7 @@ interface FilterPanelProps {
 
 const FILTERABLE_CATEGORIES = [2, 3, 4, 6, 8, 9, 14];
 
-function RangeSlider({
+const RangeSlider = memo(function RangeSlider({
   label,
   min,
   max,
@@ -62,27 +65,31 @@ function RangeSlider({
       </div>
     </div>
   );
-}
+});
 
 export default function FilterPanel({ isOpen, onToggle, filters, onChange, onReset, isActive }: FilterPanelProps) {
   return (
     <>
       {/* Toggle button */}
       <button
+        type="button"
         onClick={onToggle}
+        aria-label={isOpen ? 'Close filters panel' : 'Open filters panel'}
         title="Filter aircraft"
-        className={`absolute top-4 left-4 z-10 w-9 h-9 flex items-center justify-center bg-bg-secondary/90 border backdrop-blur-sm transition-colors ${
+        className={`absolute top-4 left-4 w-9 h-9 flex items-center justify-center bg-bg-secondary/90 border backdrop-blur-sm transition-colors ${
           isActive ? 'border-accent/50 text-accent' : 'border-border-subtle text-text-label hover:text-text-primary'
         }`}
+        style={{ zIndex: Z_INDEX.control }}
       >
         <SlidersHorizontal size={16} />
       </button>
 
       {/* Panel */}
       <div
-        className={`absolute top-0 left-0 h-full w-72 z-20 transition-all duration-300 ease-out ${
+        className={`absolute top-0 left-0 h-full w-72 transition-all duration-300 ease-out ${
           isOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0 pointer-events-none'
         }`}
+        style={{ zIndex: Z_INDEX.panel }}
       >
         <div className="h-full backdrop-blur-xl bg-bg-secondary/80 border-r border-border-subtle overflow-y-auto">
           {/* Header */}
@@ -93,11 +100,22 @@ export default function FilterPanel({ isOpen, onToggle, filters, onChange, onRes
             </div>
             <div className="flex items-center gap-1">
               {isActive && (
-                <button onClick={onReset} className="p-1.5 text-text-label hover:text-accent transition-colors" title="Reset filters">
+                <button
+                  type="button"
+                  onClick={onReset}
+                  aria-label="Reset filters"
+                  className="p-1.5 text-text-label hover:text-accent transition-colors"
+                  title="Reset filters"
+                >
                   <RotateCcw size={14} />
                 </button>
               )}
-              <button onClick={onToggle} className="p-1.5 text-text-label hover:text-text-primary transition-colors">
+              <button
+                type="button"
+                onClick={onToggle}
+                aria-label="Close filters panel"
+                className="p-1.5 text-text-label hover:text-text-primary transition-colors"
+              >
                 <X size={14} />
               </button>
             </div>
@@ -112,7 +130,7 @@ export default function FilterPanel({ isOpen, onToggle, filters, onChange, onRes
               step={500}
               value={filters.altitudeRange}
               onChange={v => onChange({ ...filters, altitudeRange: v })}
-              format={v => `${(v * 3.28084 / 1000).toFixed(0)}k ft`}
+              format={v => `${(metersToFeet(v) / 1000).toFixed(0)}k ft`}
             />
 
             {/* Speed range */}
@@ -123,7 +141,7 @@ export default function FilterPanel({ isOpen, onToggle, filters, onChange, onRes
               step={10}
               value={filters.speedRange}
               onChange={v => onChange({ ...filters, speedRange: v })}
-              format={v => `${Math.round(v * 1.94384)} kts`}
+              format={v => `${Math.round(metersPerSecondToKnots(v))} kts`}
             />
 
             {/* Airborne/Ground toggle */}
@@ -132,6 +150,7 @@ export default function FilterPanel({ isOpen, onToggle, filters, onChange, onRes
               <div className="flex gap-1">
                 {(['all', 'airborne', 'ground'] as const).map(opt => (
                   <button
+                    type="button"
                     key={opt}
                     onClick={() => onChange({ ...filters, onGround: opt })}
                     className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-medium transition-colors ${

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { parseAdsbdbRouteResponse } from '@/lib/adsbdb';
 
 interface AirportData {
   icao: string;
@@ -25,17 +26,6 @@ interface CacheEntry {
 const ROUTE_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
 const cache = new Map<string, CacheEntry>();
 
-function parseAdsbdbAirport(ap: Record<string, unknown>): AirportData | null {
-  if (!ap || !ap.icao_code) return null;
-  return {
-    icao: ap.icao_code as string,
-    iata: (ap.iata_code as string) || '',
-    name: (ap.name as string) || '',
-    latitude: ap.latitude as number,
-    longitude: ap.longitude as number,
-  };
-}
-
 function emptyResponse(callsign: string, error?: string): RouteResponse {
   return { callsign, departure: null, destination: null, operatorIata: null, flightNumber: null, error };
 }
@@ -48,46 +38,47 @@ export async function GET(request: NextRequest) {
   }
 
   const now = Date.now();
-  const cached = cache.get(callsign);
+  const normalizedCallsign = callsign.toUpperCase();
+  const cached = cache.get(normalizedCallsign);
   if (cached && now - cached.timestamp < ROUTE_CACHE_TTL) {
     const status = cached.data.departure ? 200 : 404;
     return NextResponse.json(cached.data, { status });
   }
 
   try {
-    const url = `https://api.adsbdb.com/v0/callsign/${encodeURIComponent(callsign)}`;
+    const url = `https://api.adsbdb.com/v0/callsign/${encodeURIComponent(normalizedCallsign)}`;
     const res = await fetch(url, {
       signal: AbortSignal.timeout(8000),
     });
 
     if (res.status === 404 || res.status === 400) {
-      const response = emptyResponse(callsign, 'Route not found');
-      cache.set(callsign, { data: response, timestamp: now });
+      const response = emptyResponse(normalizedCallsign, 'Route not found');
+      cache.set(normalizedCallsign, { data: response, timestamp: now });
       return NextResponse.json(response, { status: 404 });
     }
 
     if (!res.ok) {
-      return NextResponse.json(emptyResponse(callsign, `API error: ${res.status}`), { status: 502 });
+      return NextResponse.json(emptyResponse(normalizedCallsign, 'Data provider unavailable'), { status: 502 });
     }
 
-    const data = await res.json();
-    const flightroute = data?.response?.flightroute;
+    const payload: unknown = await res.json();
+    const parsedRoute = parseAdsbdbRouteResponse(payload);
 
-    if (!flightroute) {
-      const response = emptyResponse(callsign, 'No route data');
-      cache.set(callsign, { data: response, timestamp: now });
+    if (!parsedRoute) {
+      const response = emptyResponse(normalizedCallsign, 'No route data');
+      cache.set(normalizedCallsign, { data: response, timestamp: now });
       return NextResponse.json(response, { status: 404 });
     }
 
     const response: RouteResponse = {
-      callsign,
-      departure: parseAdsbdbAirport(flightroute.origin),
-      destination: parseAdsbdbAirport(flightroute.destination),
-      operatorIata: flightroute.airline?.iata || flightroute.callsign_iata?.slice(0, 2) || null,
-      flightNumber: flightroute.callsign_iata || null,
+      callsign: normalizedCallsign,
+      departure: parsedRoute.departure as AirportData | null,
+      destination: parsedRoute.destination as AirportData | null,
+      operatorIata: parsedRoute.operatorIata,
+      flightNumber: parsedRoute.flightNumber,
     };
 
-    cache.set(callsign, { data: response, timestamp: now });
+    cache.set(normalizedCallsign, { data: response, timestamp: now });
 
     // Prune old cache entries
     if (cache.size > 200) {
@@ -100,6 +91,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(response);
   } catch (err) {
-    return NextResponse.json(emptyResponse(callsign, String(err)), { status: 500 });
+    console.error('Failed to fetch route data from ADSBDB', err);
+    return NextResponse.json(emptyResponse(normalizedCallsign, 'Unexpected server error'), { status: 500 });
   }
 }

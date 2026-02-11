@@ -13,6 +13,21 @@ interface PositionRecord {
 const MAX_AGE_MS = 5 * 60 * 1000; // 5 minutes
 const MIN_DISTANCE = 0.001; // ~100m, avoid storing identical positions
 
+function resolveAltitude(flight: Flight): number | null {
+  return flight.baroAltitude ?? flight.geoAltitude ?? flight.altitude;
+}
+
+function pruneExpired(records: PositionRecord[], cutoff: number): void {
+  let firstFreshIndex = 0;
+  while (firstFreshIndex < records.length && records[firstFreshIndex].timestamp < cutoff) {
+    firstFreshIndex += 1;
+  }
+
+  if (firstFreshIndex > 0) {
+    records.splice(0, firstFreshIndex);
+  }
+}
+
 export function useFlightHistory() {
   const historyRef = useRef<Map<string, PositionRecord[]>>(new Map());
 
@@ -35,13 +50,11 @@ export function useFlightHistory() {
         if (dLat < MIN_DISTANCE && dLng < MIN_DISTANCE) continue;
       }
 
-      records.push({ lng: f.longitude, lat: f.latitude, altitude: f.altitude, timestamp: now });
+      records.push({ lng: f.longitude, lat: f.latitude, altitude: resolveAltitude(f), timestamp: now });
 
       // Prune old entries
       const cutoff = now - MAX_AGE_MS;
-      while (records.length > 0 && records[0].timestamp < cutoff) {
-        records.shift();
-      }
+      pruneExpired(records, cutoff);
     }
 
     // Remove entries for aircraft no longer in view
@@ -73,12 +86,10 @@ export function useFlightHistory() {
       if (dLat < MIN_DISTANCE && dLng < MIN_DISTANCE) return;
     }
 
-    records.push({ lng: flight.longitude, lat: flight.latitude, altitude: flight.altitude, timestamp: now });
+    records.push({ lng: flight.longitude, lat: flight.latitude, altitude: resolveAltitude(flight), timestamp: now });
 
     const cutoff = now - MAX_AGE_MS;
-    while (records.length > 0 && records[0].timestamp < cutoff) {
-      records.shift();
-    }
+    pruneExpired(records, cutoff);
   }, []);
 
   const getTrail = useCallback((icao24: string): [number, number][] => {

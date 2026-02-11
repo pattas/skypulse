@@ -11,7 +11,9 @@ export const DEBOUNCE_BOUNDS_MS = 300;
 
 export const MAP_CENTER = { lng: 15, lat: 50 };
 export const MAP_ZOOM = 5;
-export const MAP_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+export const MAP_DARK_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+export const MAP_LIGHT_STYLE = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
+export const MAP_STYLE = MAP_DARK_STYLE;
 
 export const COLORS = {
   bgPrimary: '#0C0F1A',

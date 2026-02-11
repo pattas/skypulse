@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import type { Flight } from '@/lib/types';
+import { Z_INDEX } from '@/lib/z-index';
 
 interface StatsBarProps {
   flights: Flight[];
@@ -26,7 +27,10 @@ export default function StatsBar({ flights, lastUpdate, error, isLoading }: Stat
   const total = flights.length;
 
   return (
-    <div className="absolute top-4 left-14 z-10 flex items-center gap-3 bg-bg-secondary/90 border border-border-subtle px-4 py-2.5 backdrop-blur-sm max-md:left-14 max-md:gap-2 max-md:px-2.5 max-md:py-2">
+    <div
+      className="absolute top-4 left-14 flex items-center gap-3 bg-bg-secondary/90 border border-border-subtle px-4 py-2.5 backdrop-blur-sm max-md:left-14 max-md:gap-2 max-md:px-2.5 max-md:py-2"
+      style={{ zIndex: Z_INDEX.control }}
+    >
       <div className="flex items-center gap-2">
         <span
           className={`w-2 h-2 rounded-full ${

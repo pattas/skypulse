@@ -1,6 +1,7 @@
 'use client';
 
 import { ALTITUDE_STOPS } from '@/lib/constants';
+import { Z_INDEX } from '@/lib/z-index';
 
 const labels = [
   { alt: 0, label: 'GND' },
@@ -18,7 +19,7 @@ export default function AltitudeLegend() {
   }).join(', ');
 
   return (
-    <div className="absolute bottom-8 left-4 z-10 flex items-end gap-2">
+    <div className="absolute bottom-8 left-4 flex items-end gap-2" style={{ zIndex: Z_INDEX.control }}>
       <div
         className="w-1.5 h-28 rounded-sm"
         style={{

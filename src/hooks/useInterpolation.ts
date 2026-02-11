@@ -38,10 +38,12 @@ export function useInterpolation({ current, previous, lastUpdate, mapRef, select
   const lastUpdateRef = useRef(lastUpdate);
   const selectedRef = useRef(selectedIcao);
 
-  currentRef.current = current;
-  previousRef.current = previous;
-  lastUpdateRef.current = lastUpdate;
-  selectedRef.current = selectedIcao;
+  useEffect(() => {
+    currentRef.current = current;
+    previousRef.current = previous;
+    lastUpdateRef.current = lastUpdate;
+    selectedRef.current = selectedIcao;
+  }, [current, previous, lastUpdate, selectedIcao]);
 
   useEffect(() => {
     const animate = (timestamp: number) => {
@@ -200,5 +202,5 @@ export function useInterpolation({ current, previous, lastUpdate, mapRef, select
 
     rafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [mapRef]);
+  }, [mapRef, routeDestRef, trailRef]);
 }

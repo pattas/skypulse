@@ -1,5 +1,7 @@
 'use client';
 
+import { Z_INDEX } from '@/lib/z-index';
+
 interface AircraftTooltipProps {
   callsign: string;
   altitude: string;
@@ -14,8 +16,8 @@ export default function AircraftTooltip({ callsign, altitude, speed, x, y, visib
 
   return (
     <div
-      className="absolute z-30 pointer-events-none"
-      style={{ left: x, top: y, transform: 'translate(-50%, -120%)' }}
+      className="absolute pointer-events-none"
+      style={{ left: x, top: y, transform: 'translate(-50%, -120%)', zIndex: Z_INDEX.overlay }}
     >
       <div className="bg-bg-secondary/95 border border-border-subtle backdrop-blur-sm px-2.5 py-1.5 whitespace-nowrap">
         <div className="font-mono text-xs text-text-primary tracking-wide">{callsign}</div>

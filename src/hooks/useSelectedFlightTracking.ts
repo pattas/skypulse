@@ -28,7 +28,6 @@ export function useSelectedFlightTracking(selectedIcao: string | null) {
   const [lastUpdate, setLastUpdate] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const icaoRef = useRef(selectedIcao);
-  icaoRef.current = selectedIcao;
 
   const fetchFlight = useCallback(async (icao24: string, signal: AbortSignal): Promise<FetchResult> => {
     try {
@@ -55,10 +54,11 @@ export function useSelectedFlightTracking(selectedIcao: string | null) {
   }, []);
 
   useEffect(() => {
-    if (!selectedIcao) {
-      setTrackedFlight(null);
-      return;
-    }
+    icaoRef.current = selectedIcao;
+  }, [selectedIcao]);
+
+  useEffect(() => {
+    if (!selectedIcao) return;
 
     const controller = new AbortController();
 
@@ -83,5 +83,8 @@ export function useSelectedFlightTracking(selectedIcao: string | null) {
     };
   }, [selectedIcao, fetchFlight]);
 
-  return { trackedFlight, lastUpdate };
+  return {
+    trackedFlight: selectedIcao ? trackedFlight : null,
+    lastUpdate,
+  };
 }

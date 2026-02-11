@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { CloudRain } from 'lucide-react';
 import type { Map } from 'maplibre-gl';
+import { Z_INDEX } from '@/lib/z-index';
 
 interface WeatherToggleProps {
   mapRef: React.RefObject<Map | null>;
@@ -97,11 +98,14 @@ export default function WeatherToggle({ mapRef }: WeatherToggleProps) {
 
   return (
     <button
+      type="button"
       onClick={toggle}
+      aria-label={enabled ? 'Hide weather radar overlay' : 'Show weather radar overlay'}
       title="Toggle weather radar"
-      className={`absolute bottom-32 right-4 z-10 w-9 h-9 flex items-center justify-center bg-bg-secondary/90 border backdrop-blur-sm transition-colors ${
+      className={`absolute bottom-32 right-4 w-9 h-9 flex items-center justify-center bg-bg-secondary/90 border backdrop-blur-sm transition-colors ${
         enabled ? 'border-accent/50 text-accent' : 'border-border-subtle text-text-label hover:text-text-primary'
       }`}
+      style={{ zIndex: Z_INDEX.control }}
     >
       <CloudRain size={16} />
     </button>

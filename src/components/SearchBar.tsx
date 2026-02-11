@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo, useId } from 'react';
 import { Search } from 'lucide-react';
 import type { Flight } from '@/lib/types';
 import { SEARCH_MAX_RESULTS } from '@/lib/constants';
 import { getAircraftCategory } from '@/lib/aircraft-category';
+import { Z_INDEX } from '@/lib/z-index';
 
 interface SearchBarProps {
   flights: Flight[];
@@ -36,6 +37,7 @@ const MATCH_BADGES: Record<MatchType, { label: string; color: string }> = {
 };
 
 export default function SearchBar({ flights, onSelect }: SearchBarProps) {
+  const inputId = useId();
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -88,11 +90,6 @@ export default function SearchBar({ flights, onSelect }: SearchBarProps) {
     }
   }, [isOpen, results, highlightedIndex, handleSelect]);
 
-  // Reset highlight when results change
-  useEffect(() => {
-    setHighlightedIndex(-1);
-  }, [query]);
-
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -105,16 +102,19 @@ export default function SearchBar({ flights, onSelect }: SearchBarProps) {
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute top-4 right-4 z-10 w-72">
+    <div ref={containerRef} className="absolute top-4 right-4 w-72" style={{ zIndex: Z_INDEX.control }}>
       <div className="relative">
+        <label htmlFor={inputId} className="sr-only">Search flights</label>
         <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-label" />
         <input
+          id={inputId}
           ref={inputRef}
           type="text"
           value={query}
           onChange={e => {
             setQuery(e.target.value);
             setIsOpen(true);
+            setHighlightedIndex(-1);
           }}
           onFocus={() => setIsOpen(true)}
           onKeyDown={handleKeyDown}
@@ -129,6 +129,7 @@ export default function SearchBar({ flights, onSelect }: SearchBarProps) {
             const badge = MATCH_BADGES[matchType];
             return (
               <button
+                type="button"
                 key={flight.icao24}
                 onClick={() => handleSelect(flight)}
                 onMouseEnter={() => setHighlightedIndex(index)}

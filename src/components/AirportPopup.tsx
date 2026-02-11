@@ -1,5 +1,7 @@
 'use client';
 
+import { Z_INDEX } from '@/lib/z-index';
+
 interface AirportPopupProps {
   name: string;
   icao: string;
@@ -14,8 +16,8 @@ export default function AirportPopup({ name, icao, iata, x, y, visible }: Airpor
 
   return (
     <div
-      className="absolute z-30 pointer-events-none"
-      style={{ left: x, top: y, transform: 'translate(-50%, -130%)' }}
+      className="absolute pointer-events-none"
+      style={{ left: x, top: y, transform: 'translate(-50%, -130%)', zIndex: Z_INDEX.overlay }}
     >
       <div className="bg-bg-secondary/95 border border-border-subtle backdrop-blur-sm px-2.5 py-1.5 whitespace-nowrap">
         <div className="text-xs text-text-primary font-medium">{name}</div>

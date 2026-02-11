@@ -3,19 +3,25 @@
 import { useState } from 'react';
 import { BarChart3, X, ChevronUp } from 'lucide-react';
 import type { Flight } from '@/lib/types';
+import {
+  metersPerSecondToFeetPerMinute,
+  metersPerSecondToKnots,
+  metersToFeet,
+} from '@/lib/units';
+import { Z_INDEX } from '@/lib/z-index';
 
 interface StatsPanelProps {
   flights: Flight[];
 }
 
-function metersToFeet(m: number | null): string {
+function formatMetersToFeet(m: number | null): string {
   if (m === null) return '---';
-  return Math.round(m * 3.28084).toLocaleString();
+  return Math.round(metersToFeet(m)).toLocaleString();
 }
 
 function msToKnots(ms: number | null): string {
   if (ms === null) return '---';
-  return Math.round(ms * 1.94384).toString();
+  return Math.round(metersPerSecondToKnots(ms)).toString();
 }
 
 export default function StatsPanel({ flights }: StatsPanelProps) {
@@ -42,21 +48,32 @@ export default function StatsPanel({ flights }: StatsPanelProps) {
   return (
     <>
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
+        aria-label="Open flight statistics panel"
         title="Flight statistics"
-        className="absolute bottom-8 left-4 z-10 w-9 h-9 flex items-center justify-center bg-bg-secondary/90 border border-border-subtle backdrop-blur-sm text-text-label hover:text-text-primary transition-colors"
+        className="absolute bottom-8 left-4 w-9 h-9 flex items-center justify-center bg-bg-secondary/90 border border-border-subtle backdrop-blur-sm text-text-label hover:text-text-primary transition-colors"
+        style={{ zIndex: Z_INDEX.control }}
       >
         <BarChart3 size={16} />
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-8 left-4 z-20 w-64 bg-bg-secondary/95 border border-border-subtle backdrop-blur-xl">
+        <div
+          className="absolute bottom-8 left-4 w-64 bg-bg-secondary/95 border border-border-subtle backdrop-blur-xl"
+          style={{ zIndex: Z_INDEX.panel }}
+        >
           <div className="flex items-center justify-between px-3 pt-3 pb-2">
             <div className="flex items-center gap-2">
               <BarChart3 size={12} className="text-accent" />
               <span className="text-xs font-medium text-text-primary uppercase tracking-wider">Superlatives</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="p-1 text-text-label hover:text-text-primary">
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close flight statistics panel"
+              className="p-1 text-text-label hover:text-text-primary"
+            >
               <X size={12} />
             </button>
           </div>
@@ -70,7 +87,7 @@ export default function StatsPanel({ flights }: StatsPanelProps) {
                 </div>
                 <div className="flex items-center gap-1">
                   <ChevronUp size={10} className="text-accent" />
-                  <span className="font-mono text-xs text-accent tabular-nums">{metersToFeet(highest.baroAltitude)} ft</span>
+                  <span className="font-mono text-xs text-accent tabular-nums">{formatMetersToFeet(highest.baroAltitude)} ft</span>
                 </div>
               </div>
             )}
@@ -91,7 +108,7 @@ export default function StatsPanel({ flights }: StatsPanelProps) {
                   <span className="text-[10px] uppercase tracking-wider text-text-label block">Climbing</span>
                   <span className="font-mono text-xs text-text-primary">{climbingMost.callsign || climbingMost.icao24}</span>
                 </div>
-                <span className="font-mono text-xs text-accent tabular-nums">{Math.round((climbingMost.verticalRate ?? 0) * 196.85)} fpm</span>
+                <span className="font-mono text-xs text-accent tabular-nums">{Math.round(metersPerSecondToFeetPerMinute(climbingMost.verticalRate ?? 0))} fpm</span>
               </div>
             )}
 

@@ -1,76 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { OPENSKY_API_URL } from '@/lib/constants';
 import type { Flight } from '@/lib/types';
+import { getOpenSkyAccessToken } from '@/lib/opensky-auth';
+import { parseOpenSkyStatesPayload, transformOpenSkyStateToFlight } from '@/lib/opensky-state';
 
 // Lightweight cache for single-aircraft queries (1s TTL)
 let singleCache: { icao24: string; data: Flight; timestamp: number } | null = null;
 const SINGLE_CACHE_TTL = 1_500;
 const RATE_LIMIT_BACKOFF_MS = 15_000;
 let rateLimitedUntil = 0;
-
-// Reuse the token from the flights endpoint via a shared module would be ideal,
-// but to keep it simple we'll re-implement token fetching here
-let accessToken: string | null = null;
-let tokenExpiry = 0;
-const TOKEN_URL = 'https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token';
-
-async function getAccessToken(): Promise<string | null> {
-  const clientId = process.env.OPENSKY_CLIENT_ID;
-  const clientSecret = process.env.OPENSKY_CLIENT_SECRET;
-  if (!clientId || !clientSecret) return null;
-
-  if (accessToken && Date.now() < tokenExpiry - 60_000) {
-    return accessToken;
-  }
-
-  try {
-    const res = await fetch(TOKEN_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        grant_type: 'client_credentials',
-        client_id: clientId,
-        client_secret: clientSecret,
-      }),
-      signal: AbortSignal.timeout(5000),
-    });
-
-    if (!res.ok) return null;
-
-    const data = await res.json();
-    accessToken = data.access_token;
-    tokenExpiry = Date.now() + (data.expires_in ?? 1800) * 1000;
-    return accessToken;
-  } catch {
-    return null;
-  }
-}
-
-function transformState(state: unknown[]): Flight | null {
-  const lat = state[6] as number | null;
-  const lng = state[5] as number | null;
-  if (lat === null || lng === null) return null;
-
-  return {
-    icao24: (state[0] as string).trim(),
-    callsign: ((state[1] as string) || '').trim(),
-    country: (state[2] as string) || '',
-    longitude: lng,
-    latitude: lat,
-    altitude: state[7] as number | null,
-    heading: state[10] as number | null,
-    velocity: state[9] as number | null,
-    verticalRate: state[11] as number | null,
-    onGround: state[8] as boolean,
-    squawk: state[14] as string | null,
-    baroAltitude: state[7] as number | null,
-    geoAltitude: state[13] as number | null,
-    lastContact: state[4] as number,
-    lastPositionUpdate: state[3] as number | null,
-    category: (state[17] as number) || 0,
-    positionSource: (state[16] as number) || 0,
-  };
-}
 
 function parseRetryAfterHeaderMs(retryAfterHeader: string | null): number {
   if (!retryAfterHeader) return 0;
@@ -115,6 +53,13 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  if (!/^[0-9a-f]{6}$/.test(normalizedIcao24)) {
+    return NextResponse.json(
+      { flight: null, error: 'Invalid icao24 parameter' },
+      { status: 400 },
+    );
+  }
+
   const now = Date.now();
 
   // Return cached if fresh
@@ -143,7 +88,7 @@ export async function GET(request: NextRequest) {
   try {
     const url = `${OPENSKY_API_URL}?icao24=${encodeURIComponent(normalizedIcao24)}`;
     const headers: Record<string, string> = {};
-    const token = await getAccessToken();
+    const token = await getOpenSkyAccessToken();
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
@@ -179,15 +124,23 @@ export async function GET(request: NextRequest) {
         );
       }
       return NextResponse.json(
-        { flight: null, error: `API error: ${res.status}` },
+        { flight: null, error: 'Data provider unavailable' },
         { status: 502, headers: { 'Cache-Control': 'no-store' } },
       );
     }
 
     rateLimitedUntil = 0;
 
-    const data = await res.json();
-    const states: unknown[][] = data.states || [];
+    const payload: unknown = await res.json();
+    const parsedPayload = parseOpenSkyStatesPayload(payload);
+    if (!parsedPayload) {
+      return NextResponse.json(
+        { flight: null, error: 'Data provider returned invalid payload' },
+        { status: 502, headers: { 'Cache-Control': 'no-store' } },
+      );
+    }
+
+    const states = parsedPayload.states;
 
     if (states.length === 0) {
       return NextResponse.json(
@@ -196,7 +149,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const flight = transformState(states[0]);
+    const flight = transformOpenSkyStateToFlight(states[0]);
     if (!flight) {
       return NextResponse.json(
         { flight: null, error: 'No position data' },
@@ -211,6 +164,7 @@ export async function GET(request: NextRequest) {
       { headers: { 'Cache-Control': 'no-store' } },
     );
   } catch (err) {
+    console.error('Failed to fetch single flight from OpenSky', err);
     if (singleCache && singleCache.icao24 === normalizedIcao24) {
       return NextResponse.json(
         { flight: singleCache.data, timestamp: singleCache.timestamp },
@@ -218,7 +172,7 @@ export async function GET(request: NextRequest) {
       );
     }
     return NextResponse.json(
-      { flight: null, error: String(err) },
+      { flight: null, error: 'Unexpected server error' },
       { status: 500, headers: { 'Cache-Control': 'no-store' } },
     );
   }

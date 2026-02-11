@@ -11,14 +11,19 @@ export function useMapBounds() {
   const [bounds, setBounds] = useState<BoundingBox | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastBoundsRef = useRef<BoundingBox | null>(null);
+  const detachListenerRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
+      detachListenerRef.current?.();
+      detachListenerRef.current = null;
     };
   }, []);
 
   const attachBoundsListener = useCallback((map: Map) => {
+    detachListenerRef.current?.();
+
     const setIfChanged = (next: BoundingBox) => {
       const prev = lastBoundsRef.current;
       if (
@@ -48,6 +53,13 @@ export function useMapBounds() {
     };
 
     map.on('moveend', update);
+    detachListenerRef.current = () => {
+      map.off('moveend', update);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
 
     // Set initial bounds
     const b = map.getBounds();

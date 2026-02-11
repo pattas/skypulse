@@ -35,6 +35,14 @@ export function useFlightData(bounds: BoundingBox | null) {
   const lastBoundsSignatureRef = useRef<string | null>(null);
   const rateLimitedUntilRef = useRef(0);
   const pollRef = useRef<() => void>(() => {});
+  const boundsSignature = bounds ? getBoundsSignature(bounds) : null;
+
+  const schedulePoll = useCallback((delayMs: number) => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      pollRef.current();
+    }, Math.max(0, delayMs));
+  }, []);
 
   const fetchFlights = useCallback(async (signal: AbortSignal): Promise<FetchResult> => {
     const b = boundsRef.current;
@@ -84,7 +92,7 @@ export function useFlightData(bounds: BoundingBox | null) {
       return isRateLimited ? { ok: false, retryDelayMs } : { ok: true };
     } catch (err) {
       if ((err as Error).name === 'AbortError') return { ok: false };
-      setState(prev => ({ ...prev, error: String(err), isLoading: false }));
+      setState(prev => ({ ...prev, error: 'Connection error', isLoading: false }));
       return { ok: false };
     }
   }, []);
@@ -97,7 +105,7 @@ export function useFlightData(bounds: BoundingBox | null) {
       if (controller.signal.aborted) return;
 
       if (isFetchingRef.current) {
-        timeoutRef.current = setTimeout(poll, IN_FLIGHT_POLL_DELAY);
+        schedulePoll(IN_FLIGHT_POLL_DELAY);
         return;
       }
 
@@ -116,50 +124,46 @@ export function useFlightData(bounds: BoundingBox | null) {
       const shouldRefreshBounds = pendingBoundsRefreshRef.current;
       pendingBoundsRefreshRef.current = false;
       const retryDelay = result.retryDelayMs ?? RETRY_DELAY;
-      timeoutRef.current = setTimeout(poll, shouldRefreshBounds ? 0 : result.ok ? POLL_INTERVAL : retryDelay);
+      schedulePoll(shouldRefreshBounds ? 0 : result.ok ? POLL_INTERVAL : retryDelay);
     };
 
     pollRef.current = poll;
 
     // Initial fetch with short delay for map settle
-    timeoutRef.current = setTimeout(poll, 500);
+    schedulePoll(500);
 
     return () => {
       controller.abort();
       clearTimeout(timeoutRef.current);
     };
-  }, [fetchFlights]);
+  }, [fetchFlights, schedulePoll]);
 
   // When bounds change, clear the pending timeout and kick poll() immediately
   useEffect(() => {
-    if (!bounds) return;
+    if (!bounds || !boundsSignature) return;
 
-    const signature = getBoundsSignature(bounds);
-    if (signature === lastBoundsSignatureRef.current) return;
-    lastBoundsSignatureRef.current = signature;
+    if (boundsSignature === lastBoundsSignatureRef.current) return;
+    lastBoundsSignatureRef.current = boundsSignature;
 
     pendingBoundsRefreshRef.current = true;
 
     const rateLimitWaitMs = rateLimitedUntilRef.current - Date.now();
     if (rateLimitWaitMs > 0) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(pollRef.current, Math.min(rateLimitWaitMs, MAX_RATE_LIMIT_RETRY_MS));
+      schedulePoll(Math.min(rateLimitWaitMs, MAX_RATE_LIMIT_RETRY_MS));
       return;
     }
 
     const sinceLastAttempt = Date.now() - lastAttemptRef.current;
     if (sinceLastAttempt < BOUNDS_FETCH_COOLDOWN) {
       if (isFetchingRef.current) return;
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(pollRef.current, BOUNDS_FETCH_COOLDOWN - sinceLastAttempt);
+      schedulePoll(BOUNDS_FETCH_COOLDOWN - sinceLastAttempt);
       return;
     }
 
     if (!isFetchingRef.current) {
-      clearTimeout(timeoutRef.current);
-      pollRef.current();
+      schedulePoll(0);
     }
-  }, [bounds]);
+  }, [bounds, boundsSignature, schedulePoll]);
 
   return state;
 }

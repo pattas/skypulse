@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import type { Map } from 'maplibre-gl';
 
 interface UrlState {
@@ -25,13 +25,14 @@ function parseUrlState(): UrlState {
   return state;
 }
 
-export function useUrlState(mapRef: React.RefObject<Map | null>) {
+export function useUrlState() {
   const updateTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const initialState = useRef(parseUrlState());
+  const detachMoveListenerRef = useRef<(() => void) | null>(null);
+  const [initialState] = useState<UrlState>(() => parseUrlState());
 
   // Restore view from URL on mount
   const restoreFromUrl = useCallback((map: Map, onSelectIcao?: (icao: string) => void) => {
-    const s = initialState.current;
+    const s = initialState;
     if (s.lng != null && s.lat != null) {
       map.jumpTo({
         center: [s.lng, s.lat],
@@ -41,7 +42,7 @@ export function useUrlState(mapRef: React.RefObject<Map | null>) {
     if (s.icao && onSelectIcao) {
       onSelectIcao(s.icao);
     }
-  }, []);
+  }, [initialState]);
 
   // Sync map state to URL (debounced)
   const syncToUrl = useCallback((center: { lng: number; lat: number }, zoom: number, selectedIcao: string | null) => {
@@ -58,20 +59,33 @@ export function useUrlState(mapRef: React.RefObject<Map | null>) {
     }, 500);
   }, []);
 
-  // Attach map move listener
-  const map = mapRef.current;
-  useEffect(() => {
-    if (!map) return;
+  const attachMoveListener = useCallback((map: Map) => {
+    detachMoveListenerRef.current?.();
+
     const onMove = () => {
       const center = map.getCenter();
       syncToUrl(center, map.getZoom(), new URLSearchParams(window.location.search).get('icao'));
     };
+
     map.on('moveend', onMove);
-    return () => {
+    detachMoveListenerRef.current = () => {
       map.off('moveend', onMove);
       clearTimeout(updateTimer.current);
     };
-  }, [map, syncToUrl]);
+  }, [syncToUrl]);
 
-  return { restoreFromUrl, syncToUrl, initialIcao: initialState.current.icao };
+  useEffect(() => {
+    return () => {
+      detachMoveListenerRef.current?.();
+      detachMoveListenerRef.current = null;
+      clearTimeout(updateTimer.current);
+    };
+  }, []);
+
+  return {
+    restoreFromUrl,
+    syncToUrl,
+    attachMoveListener,
+    initialIcao: initialState.icao,
+  };
 }
