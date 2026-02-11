@@ -1,0 +1,1050 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-84.4281, 33.6367] },
+      "properties": { "name": "Hartsfield-Jackson Atlanta", "icao": "KATL", "iata": "ATL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-118.4085, 33.9425] },
+      "properties": { "name": "Los Angeles International", "icao": "KLAX", "iata": "LAX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-87.9048, 41.9742] },
+      "properties": { "name": "Chicago O'Hare International", "icao": "KORD", "iata": "ORD" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-97.0403, 32.8998] },
+      "properties": { "name": "Dallas/Fort Worth International", "icao": "KDFW", "iata": "DFW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-73.7781, 40.6413] },
+      "properties": { "name": "John F. Kennedy International", "icao": "KJFK", "iata": "JFK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-104.6737, 39.8561] },
+      "properties": { "name": "Denver International", "icao": "KDEN", "iata": "DEN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-122.3790, 37.6213] },
+      "properties": { "name": "San Francisco International", "icao": "KSFO", "iata": "SFO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-122.3088, 47.4502] },
+      "properties": { "name": "Seattle-Tacoma International", "icao": "KSEA", "iata": "SEA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-80.2906, 25.7959] },
+      "properties": { "name": "Miami International", "icao": "KMIA", "iata": "MIA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-73.8726, 40.7769] },
+      "properties": { "name": "LaGuardia", "icao": "KLGA", "iata": "LGA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-74.1687, 40.6895] },
+      "properties": { "name": "Newark Liberty International", "icao": "KEWR", "iata": "EWR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-81.3089, 28.4312] },
+      "properties": { "name": "Orlando International", "icao": "KMCO", "iata": "MCO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-80.9431, 35.2140] },
+      "properties": { "name": "Charlotte Douglas International", "icao": "KCLT", "iata": "CLT" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-76.6683, 39.1774] },
+      "properties": { "name": "Baltimore/Washington International", "icao": "KBWI", "iata": "BWI" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-77.4565, 38.9531] },
+      "properties": { "name": "Washington Dulles International", "icao": "KIAD", "iata": "IAD" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-77.0377, 38.8512] },
+      "properties": { "name": "Ronald Reagan Washington National", "icao": "KDCA", "iata": "DCA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-95.3414, 29.9844] },
+      "properties": { "name": "George Bush Intercontinental", "icao": "KIAH", "iata": "IAH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-95.2789, 29.6454] },
+      "properties": { "name": "William P. Hobby", "icao": "KHOU", "iata": "HOU" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-115.1523, 36.0840] },
+      "properties": { "name": "Harry Reid International", "icao": "KLAS", "iata": "LAS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-111.9781, 33.4373] },
+      "properties": { "name": "Phoenix Sky Harbor International", "icao": "KPHX", "iata": "PHX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-71.0096, 42.3656] },
+      "properties": { "name": "Boston Logan International", "icao": "KBOS", "iata": "BOS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-93.2218, 44.8848] },
+      "properties": { "name": "Minneapolis-Saint Paul International", "icao": "KMSP", "iata": "MSP" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-75.2411, 39.8721] },
+      "properties": { "name": "Philadelphia International", "icao": "KPHL", "iata": "PHL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-84.6678, 39.0489] },
+      "properties": { "name": "Cincinnati/Northern Kentucky International", "icao": "KCVG", "iata": "CVG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-81.8499, 41.4117] },
+      "properties": { "name": "Cleveland Hopkins International", "icao": "KCLE", "iata": "CLE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-83.3534, 42.2124] },
+      "properties": { "name": "Detroit Metropolitan Wayne County", "icao": "KDTW", "iata": "DTW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-80.1527, 26.0726] },
+      "properties": { "name": "Fort Lauderdale-Hollywood International", "icao": "KFLL", "iata": "FLL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-82.5332, 27.9755] },
+      "properties": { "name": "Tampa International", "icao": "KTPA", "iata": "TPA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-90.2580, 38.7487] },
+      "properties": { "name": "St. Louis Lambert International", "icao": "KSTL", "iata": "STL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-111.1603, 40.7884] },
+      "properties": { "name": "Salt Lake City International", "icao": "KSLC", "iata": "SLC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.1896, 32.7336] },
+      "properties": { "name": "San Diego International", "icao": "KSAN", "iata": "SAN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-86.2940, 36.1263] },
+      "properties": { "name": "Nashville International", "icao": "KBNA", "iata": "BNA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-97.6699, 30.1975] },
+      "properties": { "name": "Austin-Bergstrom International", "icao": "KAUS", "iata": "AUS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-98.4699, 29.5337] },
+      "properties": { "name": "San Antonio International", "icao": "KSAT", "iata": "SAT" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-87.7522, 41.7868] },
+      "properties": { "name": "Chicago Midway International", "icao": "KMDW", "iata": "MDW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-122.5975, 45.5887] },
+      "properties": { "name": "Portland International", "icao": "KPDX", "iata": "PDX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-78.7880, 35.8776] },
+      "properties": { "name": "Raleigh-Durham International", "icao": "KRDU", "iata": "RDU" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-85.7364, 38.1744] },
+      "properties": { "name": "Louisville Muhammad Ali International", "icao": "KSDF", "iata": "SDF" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-90.0750, 29.9934] },
+      "properties": { "name": "Louis Armstrong New Orleans International", "icao": "KMSY", "iata": "MSY" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-86.7522, 33.5629] },
+      "properties": { "name": "Birmingham-Shuttlesworth International", "icao": "KBHM", "iata": "BHM" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-121.9290, 37.3626] },
+      "properties": { "name": "San Jose International", "icao": "KSJC", "iata": "SJC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-94.7139, 39.2976] },
+      "properties": { "name": "Kansas City International", "icao": "KMCI", "iata": "MCI" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-84.6059, 38.0374] },
+      "properties": { "name": "Blue Grass Airport", "icao": "KLEX", "iata": "LEX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-157.9224, 21.3187] },
+      "properties": { "name": "Daniel K. Inouye International", "icao": "PHNL", "iata": "HNL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-149.9963, 61.1743] },
+      "properties": { "name": "Ted Stevens Anchorage International", "icao": "PANC", "iata": "ANC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-106.6082, 35.0402] },
+      "properties": { "name": "Albuquerque International Sunport", "icao": "KABQ", "iata": "ABQ" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-79.6306, 43.6772] },
+      "properties": { "name": "Toronto Pearson International", "icao": "CYYZ", "iata": "YYZ" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-123.1839, 49.1967] },
+      "properties": { "name": "Vancouver International", "icao": "CYVR", "iata": "YVR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-73.7408, 45.4706] },
+      "properties": { "name": "Montreal-Trudeau International", "icao": "CYUL", "iata": "YUL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-114.0203, 51.1215] },
+      "properties": { "name": "Calgary International", "icao": "CYYC", "iata": "YYC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-113.5800, 53.3097] },
+      "properties": { "name": "Edmonton International", "icao": "CYEG", "iata": "YEG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-75.6672, 45.3225] },
+      "properties": { "name": "Ottawa Macdonald-Cartier International", "icao": "CYOW", "iata": "YOW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-97.2398, 49.9100] },
+      "properties": { "name": "Winnipeg James Armstrong Richardson International", "icao": "CYWG", "iata": "YWG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-63.5086, 44.8808] },
+      "properties": { "name": "Halifax Stanfield International", "icao": "CYHZ", "iata": "YHZ" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-99.0721, 19.4363] },
+      "properties": { "name": "Mexico City International", "icao": "MMMX", "iata": "MEX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-103.3111, 20.5218] },
+      "properties": { "name": "Guadalajara International", "icao": "MMGL", "iata": "GDL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-86.8771, 21.0365] },
+      "properties": { "name": "Cancun International", "icao": "MMUN", "iata": "CUN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-100.1069, 25.7785] },
+      "properties": { "name": "Monterrey International", "icao": "MMMY", "iata": "MTY" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.4614, 51.4700] },
+      "properties": { "name": "London Heathrow", "icao": "EGLL", "iata": "LHR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [0.2389, 51.1537] },
+      "properties": { "name": "London Gatwick", "icao": "EGKK", "iata": "LGW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [0.0550, 51.5048] },
+      "properties": { "name": "London City", "icao": "EGLC", "iata": "LCY" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.1903, 51.1481] },
+      "properties": { "name": "London Stansted", "icao": "EGSS", "iata": "STN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.3684, 51.8860] },
+      "properties": { "name": "London Luton", "icao": "EGGW", "iata": "LTN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-1.7494, 52.4539] },
+      "properties": { "name": "Birmingham Airport", "icao": "EGBB", "iata": "BHX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-2.2749, 53.3537] },
+      "properties": { "name": "Manchester Airport", "icao": "EGCC", "iata": "MAN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-3.3725, 55.9500] },
+      "properties": { "name": "Edinburgh Airport", "icao": "EGPH", "iata": "EDI" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.5479, 49.0097] },
+      "properties": { "name": "Paris Charles de Gaulle", "icao": "LFPG", "iata": "CDG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.3794, 48.7233] },
+      "properties": { "name": "Paris Orly", "icao": "LFPO", "iata": "ORY" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-1.7274, 48.0693] },
+      "properties": { "name": "Rennes-Saint-Jacques", "icao": "LFRN", "iata": "RNS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [5.2214, 43.4393] },
+      "properties": { "name": "Marseille Provence", "icao": "LFML", "iata": "MRS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [7.2159, 43.6584] },
+      "properties": { "name": "Nice Cote d'Azur", "icao": "LFMN", "iata": "NCE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [1.3678, 43.6293] },
+      "properties": { "name": "Toulouse-Blagnac", "icao": "LFBO", "iata": "TLS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-1.5233, 47.1532] },
+      "properties": { "name": "Nantes Atlantique", "icao": "LFRS", "iata": "NTE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [4.9484, 45.7256] },
+      "properties": { "name": "Lyon-Saint Exupery", "icao": "LFLL", "iata": "LYS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [8.5622, 50.0379] },
+      "properties": { "name": "Frankfurt am Main", "icao": "EDDF", "iata": "FRA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [11.7861, 48.3538] },
+      "properties": { "name": "Munich Airport", "icao": "EDDM", "iata": "MUC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [13.2877, 52.5597] },
+      "properties": { "name": "Berlin Brandenburg", "icao": "EDDB", "iata": "BER" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [6.7668, 51.2895] },
+      "properties": { "name": "Dusseldorf Airport", "icao": "EDDL", "iata": "DUS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [9.9918, 53.6304] },
+      "properties": { "name": "Hamburg Airport", "icao": "EDDH", "iata": "HAM" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [7.1427, 50.8659] },
+      "properties": { "name": "Cologne Bonn Airport", "icao": "EDDK", "iata": "CGN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [9.2220, 48.6899] },
+      "properties": { "name": "Stuttgart Airport", "icao": "EDDS", "iata": "STR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [4.4844, 50.9014] },
+      "properties": { "name": "Brussels Airport", "icao": "EBBR", "iata": "BRU" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [4.7638, 52.3086] },
+      "properties": { "name": "Amsterdam Schiphol", "icao": "EHAM", "iata": "AMS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-3.5668, 40.4936] },
+      "properties": { "name": "Adolfo Suarez Madrid-Barajas", "icao": "LEMD", "iata": "MAD" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.0785, 41.2971] },
+      "properties": { "name": "Barcelona-El Prat", "icao": "LEBL", "iata": "BCN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [2.7616, 39.5517] },
+      "properties": { "name": "Palma de Mallorca", "icao": "LEPA", "iata": "PMI" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-0.4816, 38.2822] },
+      "properties": { "name": "Alicante-Elche", "icao": "LEAL", "iata": "ALC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-4.4991, 36.6749] },
+      "properties": { "name": "Malaga-Costa del Sol", "icao": "LEMG", "iata": "AGP" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-9.1354, 38.7756] },
+      "properties": { "name": "Lisbon Humberto Delgado", "icao": "LPPT", "iata": "LIS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-8.6813, 41.2481] },
+      "properties": { "name": "Porto Airport", "icao": "LPPR", "iata": "OPO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [12.2389, 41.8003] },
+      "properties": { "name": "Rome Fiumicino", "icao": "LIRF", "iata": "FCO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [9.2800, 45.6306] },
+      "properties": { "name": "Milan Malpensa", "icao": "LIMC", "iata": "MXP" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [9.7011, 45.6739] },
+      "properties": { "name": "Milan Bergamo", "icao": "LIME", "iata": "BGY" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [11.0880, 45.3957] },
+      "properties": { "name": "Verona Villafranca", "icao": "LIPX", "iata": "VRN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [11.2879, 43.8100] },
+      "properties": { "name": "Florence Peretola", "icao": "LIRQ", "iata": "FLR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.2908, 40.8842] },
+      "properties": { "name": "Naples International", "icao": "LIRN", "iata": "NAP" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [12.3519, 45.5053] },
+      "properties": { "name": "Venice Marco Polo", "icao": "LIPZ", "iata": "VCE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [23.9445, 37.9364] },
+      "properties": { "name": "Athens Eleftherios Venizelos", "icao": "LGAV", "iata": "ATH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [22.9709, 40.5197] },
+      "properties": { "name": "Thessaloniki Makedonia", "icao": "LGTS", "iata": "SKG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [8.5617, 47.4647] },
+      "properties": { "name": "Zurich Airport", "icao": "LSZH", "iata": "ZRH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [6.1092, 46.2370] },
+      "properties": { "name": "Geneva Airport", "icao": "LSGG", "iata": "GVA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [16.5697, 48.1103] },
+      "properties": { "name": "Vienna International", "icao": "LOWW", "iata": "VIE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [14.2600, 50.1008] },
+      "properties": { "name": "Prague Vaclav Havel", "icao": "LKPR", "iata": "PRG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [19.2619, 47.4298] },
+      "properties": { "name": "Budapest Ferenc Liszt", "icao": "LHBP", "iata": "BUD" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [20.9671, 52.1657] },
+      "properties": { "name": "Warsaw Chopin", "icao": "EPWA", "iata": "WAW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [16.8263, 51.1027] },
+      "properties": { "name": "Wroclaw Copernicus", "icao": "EPWR", "iata": "WRO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [18.4662, 54.3776] },
+      "properties": { "name": "Gdansk Lech Walesa", "icao": "EPGD", "iata": "GDN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [19.7852, 50.0777] },
+      "properties": { "name": "Krakow John Paul II", "icao": "EPKK", "iata": "KRK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [12.6508, 55.6180] },
+      "properties": { "name": "Copenhagen Kastrup", "icao": "EKCH", "iata": "CPH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [17.9186, 59.6519] },
+      "properties": { "name": "Stockholm Arlanda", "icao": "ESSA", "iata": "ARN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.2504, 59.1800] },
+      "properties": { "name": "Oslo Gardermoen", "icao": "ENGM", "iata": "OSL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [24.9633, 60.3172] },
+      "properties": { "name": "Helsinki-Vantaa", "icao": "EFHK", "iata": "HEL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-6.2700, 53.4264] },
+      "properties": { "name": "Dublin Airport", "icao": "EIDW", "iata": "DUB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [26.0850, 44.5711] },
+      "properties": { "name": "Bucharest Henri Coanda", "icao": "LROP", "iata": "OTP" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [23.4114, 42.6952] },
+      "properties": { "name": "Sofia Airport", "icao": "LBSF", "iata": "SOF" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [16.3415, 45.7417] },
+      "properties": { "name": "Zagreb Franjo Tudman", "icao": "LDZA", "iata": "ZAG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.4146, 55.9726] },
+      "properties": { "name": "Moscow Sheremetyevo", "icao": "UUEE", "iata": "SVO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [37.9063, 55.4088] },
+      "properties": { "name": "Moscow Domodedovo", "icao": "UUDD", "iata": "DME" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [30.2625, 59.8003] },
+      "properties": { "name": "St. Petersburg Pulkovo", "icao": "ULLI", "iata": "LED" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [28.8146, 41.2753] },
+      "properties": { "name": "Istanbul Airport", "icao": "LTFM", "iata": "IST" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [28.8209, 40.8986] },
+      "properties": { "name": "Istanbul Sabiha Gokcen", "icao": "LTFJ", "iata": "SAW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [32.9951, 40.1281] },
+      "properties": { "name": "Ankara Esenboga", "icao": "LTAC", "iata": "ESB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [27.1567, 38.2924] },
+      "properties": { "name": "Izmir Adnan Menderes", "icao": "LTBJ", "iata": "ADB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [30.8008, 36.8987] },
+      "properties": { "name": "Antalya Airport", "icao": "LTAI", "iata": "AYT" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [113.9146, 22.3089] },
+      "properties": { "name": "Hong Kong International", "icao": "VHHH", "iata": "HKG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [116.5974, 40.0799] },
+      "properties": { "name": "Beijing Capital International", "icao": "ZBAA", "iata": "PEK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [116.4107, 39.5098] },
+      "properties": { "name": "Beijing Daxing International", "icao": "ZBAD", "iata": "PKX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [121.8052, 31.1443] },
+      "properties": { "name": "Shanghai Pudong International", "icao": "ZSPD", "iata": "PVG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [121.3362, 31.1979] },
+      "properties": { "name": "Shanghai Hongqiao International", "icao": "ZSSS", "iata": "SHA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [113.2988, 23.3924] },
+      "properties": { "name": "Guangzhou Baiyun International", "icao": "ZGGG", "iata": "CAN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [113.8129, 22.6397] },
+      "properties": { "name": "Shenzhen Bao'an International", "icao": "ZGSZ", "iata": "SZX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [104.0002, 30.5785] },
+      "properties": { "name": "Chengdu Shuangliu International", "icao": "ZUUU", "iata": "CTU" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [106.6522, 29.7192] },
+      "properties": { "name": "Chongqing Jiangbei International", "icao": "ZUCK", "iata": "CKG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [108.7520, 34.4471] },
+      "properties": { "name": "Xi'an Xianyang International", "icao": "ZLXY", "iata": "XIY" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [102.9294, 25.1022] },
+      "properties": { "name": "Kunming Changshui International", "icao": "ZPPP", "iata": "KMG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [120.3930, 36.2661] },
+      "properties": { "name": "Qingdao Jiaodong International", "icao": "ZSQD", "iata": "TAO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [139.7798, 35.5494] },
+      "properties": { "name": "Tokyo Haneda", "icao": "RJTT", "iata": "HND" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [140.3929, 35.7647] },
+      "properties": { "name": "Tokyo Narita International", "icao": "RJAA", "iata": "NRT" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [135.2304, 34.4347] },
+      "properties": { "name": "Osaka Kansai International", "icao": "RJBB", "iata": "KIX" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [136.8072, 35.2551] },
+      "properties": { "name": "Nagoya Chubu Centrair", "icao": "RJGG", "iata": "NGO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [130.4514, 33.5859] },
+      "properties": { "name": "Fukuoka Airport", "icao": "RJFF", "iata": "FUK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [141.3814, 43.1161] },
+      "properties": { "name": "Sapporo New Chitose", "icao": "RJCC", "iata": "CTS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [126.7907, 37.4602] },
+      "properties": { "name": "Seoul Incheon International", "icao": "RKSI", "iata": "ICN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [126.8016, 37.5583] },
+      "properties": { "name": "Seoul Gimpo International", "icao": "RKSS", "iata": "GMP" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [128.9462, 35.1795] },
+      "properties": { "name": "Gimhae International", "icao": "RKPK", "iata": "PUS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [126.4931, 33.5104] },
+      "properties": { "name": "Jeju International", "icao": "RKPC", "iata": "CJU" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [103.9940, 1.3644] },
+      "properties": { "name": "Singapore Changi", "icao": "WSSS", "iata": "SIN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.7501, 13.6900] },
+      "properties": { "name": "Bangkok Suvarnabhumi", "icao": "VTBS", "iata": "BKK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [100.6072, 13.9126] },
+      "properties": { "name": "Bangkok Don Mueang", "icao": "VTBD", "iata": "DMK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [101.7098, 3.1390] },
+      "properties": { "name": "Kuala Lumpur International", "icao": "WMKK", "iata": "KUL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [106.6522, -6.1256] },
+      "properties": { "name": "Jakarta Soekarno-Hatta", "icao": "WIII", "iata": "CGK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [115.1667, -8.7482] },
+      "properties": { "name": "Bali Ngurah Rai International", "icao": "WADD", "iata": "DPS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [121.0198, 14.5086] },
+      "properties": { "name": "Manila Ninoy Aquino International", "icao": "RPLL", "iata": "MNL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [124.0120, 10.3074] },
+      "properties": { "name": "Mactan-Cebu International", "icao": "RPVM", "iata": "CEB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [105.8072, 21.2212] },
+      "properties": { "name": "Hanoi Noi Bai International", "icao": "VVNB", "iata": "HAN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [106.6520, 10.8188] },
+      "properties": { "name": "Ho Chi Minh City Tan Son Nhat", "icao": "VVTS", "iata": "SGN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [72.8679, 19.0896] },
+      "properties": { "name": "Mumbai Chhatrapati Shivaji Maharaj", "icao": "VABB", "iata": "BOM" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [77.1025, 28.5562] },
+      "properties": { "name": "Delhi Indira Gandhi International", "icao": "VIDP", "iata": "DEL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [77.7069, 12.9941] },
+      "properties": { "name": "Bengaluru Kempegowda International", "icao": "VOBL", "iata": "BLR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [78.4293, 17.2403] },
+      "properties": { "name": "Hyderabad Rajiv Gandhi International", "icao": "VOHS", "iata": "HYD" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.1700, 13.1067] },
+      "properties": { "name": "Chennai International", "icao": "VOMM", "iata": "MAA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [88.4467, 22.6520] },
+      "properties": { "name": "Kolkata Netaji Subhash Chandra Bose", "icao": "VECC", "iata": "CCU" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [76.2673, 10.1520] },
+      "properties": { "name": "Cochin International", "icao": "VOCI", "iata": "COK" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [121.2332, 24.9978] },
+      "properties": { "name": "Taiwan Taoyuan International", "icao": "RCTP", "iata": "TPE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [55.3644, 25.2528] },
+      "properties": { "name": "Dubai International", "icao": "OMDB", "iata": "DXB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [55.1714, 24.8968] },
+      "properties": { "name": "Dubai Al Maktoum International", "icao": "OMDW", "iata": "DWC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [54.6511, 24.4440] },
+      "properties": { "name": "Abu Dhabi International", "icao": "OMAA", "iata": "AUH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [51.6138, 25.2731] },
+      "properties": { "name": "Hamad International", "icao": "OTHH", "iata": "DOH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [46.6988, 24.9578] },
+      "properties": { "name": "King Khalid International", "icao": "OERK", "iata": "RUH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [39.1722, 21.6796] },
+      "properties": { "name": "King Abdulaziz International", "icao": "OEJN", "iata": "JED" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [50.6326, 26.2708] },
+      "properties": { "name": "Bahrain International", "icao": "OBBI", "iata": "BAH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [58.2844, 23.5933] },
+      "properties": { "name": "Muscat International", "icao": "OOMS", "iata": "MCT" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [47.9789, 29.2267] },
+      "properties": { "name": "Kuwait International", "icao": "OKBK", "iata": "KWI" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [35.2316, 31.7226] },
+      "properties": { "name": "Ben Gurion International", "icao": "LLBG", "iata": "TLV" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [35.8626, 33.8209] },
+      "properties": { "name": "Beirut Rafic Hariri International", "icao": "OLBA", "iata": "BEY" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [35.9932, 35.4011] },
+      "properties": { "name": "Queen Alia International", "icao": "OJAI", "iata": "AMM" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [51.3144, 35.6896] },
+      "properties": { "name": "Tehran Imam Khomeini International", "icao": "OIIE", "iata": "IKA" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [44.2346, 33.2625] },
+      "properties": { "name": "Baghdad International", "icao": "ORBI", "iata": "BGW" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [18.6017, -33.9715] },
+      "properties": { "name": "Cape Town International", "icao": "FACT", "iata": "CPT" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [28.2460, -26.1392] },
+      "properties": { "name": "O.R. Tambo International", "icao": "FAOR", "iata": "JNB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [31.1004, -29.6144] },
+      "properties": { "name": "King Shaka International", "icao": "FALE", "iata": "DUR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [36.9278, -1.3192] },
+      "properties": { "name": "Jomo Kenyatta International", "icao": "HKJK", "iata": "NBO" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [3.3212, 6.5774] },
+      "properties": { "name": "Murtala Muhammed International", "icao": "DNMM", "iata": "LOS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [31.4056, 30.1219] },
+      "properties": { "name": "Cairo International", "icao": "HECA", "iata": "CAI" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [32.5919, 0.0424] },
+      "properties": { "name": "Entebbe International", "icao": "HUEN", "iata": "EBB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [38.7993, 8.9779] },
+      "properties": { "name": "Addis Ababa Bole International", "icao": "HAAB", "iata": "ADD" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-7.5898, 33.5675] },
+      "properties": { "name": "Casablanca Mohammed V International", "icao": "GMMN", "iata": "CMN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [10.2272, 36.8510] },
+      "properties": { "name": "Tunis-Carthage International", "icao": "DTTA", "iata": "TUN" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-46.4733, -23.4356] },
+      "properties": { "name": "Sao Paulo Guarulhos International", "icao": "SBGR", "iata": "GRU" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-46.6565, -23.6273] },
+      "properties": { "name": "Sao Paulo Congonhas", "icao": "SBSP", "iata": "CGH" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-43.2506, -22.8100] },
+      "properties": { "name": "Rio de Janeiro Galeao International", "icao": "SBGL", "iata": "GIG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-47.9121, -15.8711] },
+      "properties": { "name": "Brasilia International", "icao": "SBBR", "iata": "BSB" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-34.9236, -8.1264] },
+      "properties": { "name": "Recife/Guararapes International", "icao": "SBRF", "iata": "REC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-70.7858, -33.3930] },
+      "properties": { "name": "Santiago Arturo Merino Benitez", "icao": "SCEL", "iata": "SCL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-58.5356, -34.8222] },
+      "properties": { "name": "Buenos Aires Ezeiza Ministro Pistarini", "icao": "SAEZ", "iata": "EZE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-58.4156, -34.5592] },
+      "properties": { "name": "Buenos Aires Jorge Newbery", "icao": "SABE", "iata": "AEP" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-77.1143, -12.0219] },
+      "properties": { "name": "Lima Jorge Chavez International", "icao": "SPJC", "iata": "LIM" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-74.1469, 4.7016] },
+      "properties": { "name": "Bogota El Dorado International", "icao": "SKBO", "iata": "BOG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [151.1772, -33.9461] },
+      "properties": { "name": "Sydney Kingsford Smith", "icao": "YSSY", "iata": "SYD" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [144.8433, -37.6733] },
+      "properties": { "name": "Melbourne Tullamarine", "icao": "YMML", "iata": "MEL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [153.1175, -27.3842] },
+      "properties": { "name": "Brisbane Airport", "icao": "YBBN", "iata": "BNE" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [115.9672, -31.9403] },
+      "properties": { "name": "Perth Airport", "icao": "YPPH", "iata": "PER" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [138.5311, -34.9450] },
+      "properties": { "name": "Adelaide Airport", "icao": "YPAD", "iata": "ADL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [149.1950, -35.3069] },
+      "properties": { "name": "Canberra Airport", "icao": "YSCB", "iata": "CBR" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [145.7553, -16.8858] },
+      "properties": { "name": "Cairns Airport", "icao": "YBCS", "iata": "CNS" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [174.7918, -36.8482] },
+      "properties": { "name": "Auckland Airport", "icao": "NZAA", "iata": "AKL" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [174.8057, -41.3272] },
+      "properties": { "name": "Wellington Airport", "icao": "NZWN", "iata": "WLG" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [172.5325, -43.4894] },
+      "properties": { "name": "Christchurch Airport", "icao": "NZCH", "iata": "CHC" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [168.7390, -46.4133] },
+      "properties": { "name": "Queenstown Airport", "icao": "NZQN", "iata": "ZQN" }
+    }
+  ]
+}

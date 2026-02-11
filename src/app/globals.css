@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@theme inline {
+  --color-bg-primary: #0C0F1A;
+  --color-bg-secondary: #111527;
+  --color-bg-tertiary: #1A1F35;
+  --color-accent: #F59E0B;
+  --color-accent-dim: #D97706;
+  --color-text-primary: #E8E9ED;
+  --color-text-secondary: #8B8FA3;
+  --color-text-label: #6B7094;
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Light theme overrides */
+html[data-theme="light"] {
+  --color-bg-primary: #F0F2F5;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #E4E7ED;
+  --color-accent: #D97706;
+  --color-accent-dim: #B45309;
+  --color-text-primary: #1A1D2E;
+  --color-text-secondary: #4A4E68;
+  --color-text-label: #6B7094;
+  --color-border-subtle: rgba(0, 0, 0, 0.10);
+  --color-success: #059669;
+  --color-error: #DC2626;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+html[data-theme="light"] body::after {
+  opacity: 0.015;
+}
+
+/* Grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* MapLibre overrides */
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right {
+  opacity: 0.3;
+  font-size: 10px;
+}
+
+.maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib {
+  background: transparent;
+  color: var(--color-text-label);
+}
+
+.maplibregl-ctrl-group {
+  display: none !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-label);
+  border-radius: 2px;
+}
+
+/* Tabular nums utility */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
