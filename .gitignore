@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.local.example
 credentials.json
 
 # vercel
@@ -47,8 +48,8 @@ CLAUDE.md
 src/**/CLAUDE.md
 .playwright-mcp/
 
-# screenshots (development artifacts)
-*.png
+# screenshots (development artifacts, root only)
+/*.png
 
 # plans
 PLAN.md
